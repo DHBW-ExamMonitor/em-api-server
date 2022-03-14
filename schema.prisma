@@ -1,0 +1,75 @@
+datasource db {
+  url      = env("DATABASE_URL")
+  provider = "postgresql"
+}
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+generator erd {
+  provider = "prisma-erd-generator"
+    output = "./ERD.pdf"
+}
+
+enum PruefungsteilnahmeStatus {
+  BESTANDEN
+  NICHT_BESTANDEN
+  ANGERECHNET
+  KRANK_MIT_ATTEST
+  FEHLEN_OHNE_GRUND
+}
+
+enum Versuch {
+  ERSTVERSUCH
+  ZWEITVERSUCH
+  DRITTVERSUCH
+}
+
+enum Studentenstatus {
+  IMMATRIKULIERT
+  EXMATRIKULIERT
+}
+
+model Kurs {
+  id               String            @id @default(uuid())
+  name             String
+  studenten        Student[]
+  pruefungstermine Pruefungstermin[]
+}
+
+model Student {
+  id                  String               @id() @default(uuid())
+  matrikelnummer      String               @unique
+  studentenStatus     Studentenstatus
+  kurs                Kurs                 @relation(fields: [kursId], references: [id])
+  kursId              String
+  pruefungsteilnahmen Pruefungsteilnahme[]
+}
+
+model Modul {
+  id               String            @id @default(uuid())
+  name             String
+  vorlesungen      String[]
+  pruefungstermine Pruefungstermin[]
+}
+
+model Pruefungstermin {
+  id                  String               @id @default(uuid())
+  modul               Modul                @relation(fields: [modulId], references: [id])
+  modulId             String
+  raeume              String[]
+  dateTime            DateTime
+  kurse               Kurs[]
+  pruefungsteilnahmen Pruefungsteilnahme[]
+}
+
+model Pruefungsteilnahme {
+  id                       String                   @id @default(uuid())
+  student                  Student                  @relation(fields: [studentId], references: [id])
+  studentId                String
+  pruefungstermin          Pruefungstermin          @relation(fields: [pruefungsterminId], references: [id])
+  pruefungsterminId        String
+  pruefungsteilnahmeStatus PruefungsteilnahmeStatus
+  versuch                  Versuch
+}
