@@ -15,7 +15,7 @@ app.get("/kurse", async (req, res) => {
 });
 
 app.get("/test", async (req, res) => {
-  res.send('test');
+  res.send("test");
 });
 
 app.get("/student", async (req, res) => {
@@ -29,5 +29,9 @@ app.post("/kurse", async (req, res) => {
 });
 
 app.listen(process.env.PORT, process.env.HOST, () =>
-  console.log(`🚀 Server ready at: ${process.env.HOST}:${process.env.PORT}`)
+  console.log(
+    `🚀 Server ready at: ${
+      process.env.HOST ? process.env.HOST : "http://localhost"
+    }:${process.env.PORT}`
+  )
 );
