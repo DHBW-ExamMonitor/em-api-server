@@ -19,6 +19,6 @@ app.post("/kurse", async (req, res) => {
   res.json({ message: "posted to kurse" });
 });
 
-app.listen(process.env.PORT, () =>
-  console.log(`🚀 Server ready at: http://localhost:${process.env.PORT}`)
+app.listen(process.env.PORT, process.env.HOST, () =>
+  console.log(`🚀 Server ready at: ${process.env.HOST}:${process.env.PORT}`)
 );
