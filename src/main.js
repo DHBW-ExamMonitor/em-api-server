@@ -11,6 +11,15 @@ app.get("/kurse", async (req, res) => {
   res.json(kurse);
 });
 
+app.get("/test", async (req, res) => {
+  res.send('test');
+});
+
+app.get("/student", async (req, res) => {
+  const student = await prisma.student.findMany();
+  res.json(student);
+});
+
 app.listen(3000, () =>
   console.log("🚀 Server ready at: http://localhost:3000")
 );
