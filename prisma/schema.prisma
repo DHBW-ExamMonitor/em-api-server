@@ -1,16 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   url      = env("DATABASE_URL")
   provider = "postgresql"
 }
 
-// generator client {
-//   provider = "prisma-client-js"
+// only use for generating PDF
+// generator erd {
+//   provider = "prisma-erd-generator"
+//     output = "./ERD.pdf"
 // }
-
-generator erd {
-  provider = "prisma-erd-generator"
-    output = "./ERD.pdf"
-}
 
 enum PruefungsteilnahmeStatus {
   BESTANDEN

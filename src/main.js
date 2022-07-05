@@ -6,17 +6,9 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/test", async (req, res) => {
-  const note = await prisma..update({
-    where: {
-      id: Number(id),
-    },
-    data: {
-      title: title,
-      body: body,
-    },
-  });
-  res.json({ test: "test" });
+app.get("/kurse", async (req, res) => {
+  const kurse = await prisma.kurs.findMany();
+  res.json(kurse);
 });
 
 app.listen(3000, () =>
