@@ -34,6 +34,12 @@ Apply database migrations (dev):
 $ npx prisma db push
 ```
 
+To generate fake Kurse and Studenten run:
+
+```bash
+$ npm run fake
+```
+
 Start the server (dev):
 
 ```bash
