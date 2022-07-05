@@ -14,6 +14,15 @@ app.get("/kurse", async (req, res) => {
   res.json(kurse);
 });
 
+app.get("/test", async (req, res) => {
+  res.send('test');
+});
+
+app.get("/student", async (req, res) => {
+  const student = await prisma.student.findMany();
+  res.json(student);
+});
+
 app.post("/kurse", async (req, res) => {
   console.log("posted to kurse");
   res.json({ message: "posted to kurse" });
