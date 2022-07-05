@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "node src/main.js",
+    "migrate:deploy": "prisma migrate deploy",
     "fake": "node prisma/fake.js"
   },
   "dependencies": {
