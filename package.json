@@ -2,15 +2,22 @@
   "name": "api-server",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node src/main.js"
+    "dev": "node src/main.js",
+    "migrate:deploy": "prisma migrate deploy",
+    "fake": "node prisma/fake.js"
   },
   "dependencies": {
-    "@prisma/client": "^4.0.0",
+    "@prisma/client": "^3.15.2",
     "express": "^4.18.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.3.0",
     "@mermaid-js/mermaid-cli": "^8.14.0",
+<<<<<<< HEAD
     "prisma": "^4.0.0",
+=======
+    "prisma": "^3.15.2",
+>>>>>>> 7196bacb75f4e92ef3231a8807b66940659829da
     "prisma-erd-generator": "^0.10.1"
   }
 }

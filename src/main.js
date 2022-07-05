@@ -7,6 +7,7 @@ const app = express();
 app.use(express.json());
 
 app.get("/kurse", async (req, res) => {
+  console.log("get kurse");
   const kurse = await prisma.kurs.findMany();
   res.json(kurse);
 });
@@ -20,6 +21,11 @@ app.get("/student", async (req, res) => {
   res.json(student);
 });
 
-app.listen(3000, () =>
-  console.log("🚀 Server ready at: http://localhost:3000")
+app.post("/kurse", async (req, res) => {
+  console.log("posted to kurse");
+  res.json({ message: "posted to kurse" });
+});
+
+app.listen(process.env.PORT, () =>
+  console.log(`🚀 Server ready at: http://localhost:${process.env.PORT}`)
 );
