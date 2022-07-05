@@ -2,7 +2,8 @@
   "name": "api-server",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node src/main.js"
+    "dev": "node src/main.js",
+    "migrate:deploy": "prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "^4.0.0",
