@@ -1,12 +1,7 @@
-const express = require("express");
 const { PrismaClient } = require("@prisma/client");
-const cors = require("cors");
 
 const prisma = new PrismaClient();
-const app = express();
 
-app.use(express.json());
-app.use(cors());
 
 app.get("/kurse", async (req, res) => {
   console.log("get kurse");
@@ -29,5 +24,9 @@ app.post("/kurse", async (req, res) => {
 });
 
 app.listen(process.env.PORT, process.env.HOST, () =>
-  console.log(`🚀 Server ready at: ${process.env.HOST}:${process.env.PORT}`)
+  console.log(
+    `🚀 Server ready at: ${
+      process.env.HOST ?? "http://localhost"
+    }:${process.env.PORT}`
+  )
 );
