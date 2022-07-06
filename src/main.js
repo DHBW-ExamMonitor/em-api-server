@@ -1,32 +1,14 @@
-const { PrismaClient } = require("@prisma/client");
+import app from "./app";
+import router from "./router";
 
-const prisma = new PrismaClient();
-
-
-app.get("/kurse", async (req, res) => {
-  console.log("get kurse");
-  const kurse = await prisma.kurs.findMany();
-  res.json(kurse);
-});
-
-app.get("/test", async (req, res) => {
-  res.send('test');
-});
-
-app.get("/student", async (req, res) => {
-  const student = await prisma.student.findMany();
-  res.json(student);
-});
-
-app.post("/kurse", async (req, res) => {
-  console.log("posted to kurse");
-  res.json({ message: "posted to kurse" });
-});
+app.use("/kurse", router.kursRouter);
+app.use("/module", router.modulRouter);
+app.use("/studenten", router.studentenRouter);
 
 app.listen(process.env.PORT, process.env.HOST, () =>
   console.log(
-    `🚀 Server ready at: ${
-      process.env.HOST ?? "http://localhost"
-    }:${process.env.PORT}`
+    `🚀 Server ready at: ${process.env.HOST ?? "http://localhost"}:${
+      process.env.PORT
+    }`
   )
 );
