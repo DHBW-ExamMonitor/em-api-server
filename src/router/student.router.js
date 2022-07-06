@@ -57,7 +57,7 @@ studentRouter.post("/", async (req, res) => {
   try {
     const student = await prisma.student.create({
       data: {
-        name: req.body.name,
+        ...req.body,
       },
     });
     res.json(student);
