@@ -35,9 +35,9 @@ studentRouter.get("/:id", async (req, res) => {
 });
 
 /**
- * @api {get} /student/:kursId Get Student by Kurs ID
+ * @api {get} /student/kurs/:kursId Get Student by Kurs ID
  */
-studentRouter.get("/:kursId", async (req, res) => {
+studentRouter.get("/kurs/:kursId", async (req, res) => {
   try {
     const student = await prisma.student.findMany({
       where: { kursId: req.params.kursId },

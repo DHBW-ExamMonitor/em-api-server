@@ -4,6 +4,8 @@ import router from "./router";
 app.use("/kurse", router.kursRouter);
 app.use("/module", router.modulRouter);
 app.use("/studenten", router.studentenRouter);
+app.use("/pruefungsteilnahme", router.pruefungsteilnahmeRouter);
+app.use("/pruefungstermine", router.pruefungstermineRouter);
 
 app.listen(process.env.PORT, process.env.HOST, () =>
   console.log(

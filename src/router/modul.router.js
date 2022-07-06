@@ -34,9 +34,9 @@ modulRouter.get("/:id", async (req, res) => {
 });
 
 /**
- * @api {get} /modul/:kursId Get Module by Kurs ID
+ * @api {get} /modul/kurs/:kursId Get Module by Kurs ID
  */
-modulRouter.get("/:kursId", async (req, res) => {
+modulRouter.get("/kurs/:kursId", async (req, res) => {
   try {
     const modul = await prisma.modul.findMany({
       where: { kursId: req.params.kursId },
