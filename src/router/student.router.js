@@ -62,6 +62,7 @@ studentRouter.post("/", async (req, res) => {
     });
     res.json(student);
   } catch (error) {
+    console.log(error)
     res.json({
       message: "Es ist ein Fehler beim Erstellen des Studenten aufgetreten.",
     });
