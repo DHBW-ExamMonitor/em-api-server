@@ -35,12 +35,14 @@ enum Studentenstatus {
 model Kurs {
   id               String            @id @default(uuid())
   name             String
+  studienjahr      DateTime
   studenten        Student[]
   pruefungstermine Pruefungstermin[]
 }
 
 model Student {
   id                  String               @id() @default(uuid())
+  name                String
   matrikelnummer      String               @unique
   studentenStatus     Studentenstatus
   kurs                Kurs                 @relation(fields: [kursId], references: [id])
@@ -52,14 +54,19 @@ model Modul {
   id               String            @id @default(uuid())
   name             String
   vorlesungen      String[]
+  aktiv            Boolean           @default(true)
   pruefungstermine Pruefungstermin[]
 }
 
 model Pruefungstermin {
   id                  String               @id @default(uuid())
+  name                String
+  hilfsmittel         String?
   modul               Modul                @relation(fields: [modulId], references: [id])
   modulId             String
   raeume              String[]
+  aufsichtsPersonen   String[]
+  notizen             String
   dateTime            DateTime
   kurse               Kurs[]
   pruefungsteilnahmen Pruefungsteilnahme[]
