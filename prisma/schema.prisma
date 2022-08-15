@@ -54,7 +54,7 @@ model Modul {
   id               String            @id @default(uuid())
   name             String
   vorlesungen      String
-  aktiv            Boolean?           @default(true)
+  aktiv            Boolean           @default(true)
   pruefungstermine Pruefungstermin[]
 }
 
