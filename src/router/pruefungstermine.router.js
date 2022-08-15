@@ -8,7 +8,11 @@ const pruefungsterminRouter = express.Router();
  */
 pruefungsterminRouter.get("/", async (req, res) => {
   try {
-    const pruefungstermin = await prisma.pruefungstermin.findMany();
+    const pruefungstermin = await prisma.pruefungstermin.findMany({
+      include: {
+        modul: true,
+      },
+    });
     res.json(pruefungstermin);
   } catch (error) {
     res.json({
@@ -117,9 +121,19 @@ pruefungsterminRouter.post("/", async (req, res) => {
   const pruefungstermin = req.body;
 
   try {
+    const modul = pruefungstermin.modul;
+    const pt = pruefungstermin;
+    pt.dateTime = new Date(pt.dateTime);
+    delete pt.modul;
+
     const newPruefungstermin = await prisma.pruefungstermin.create({
       data: {
-        ...pruefungstermin,
+        ...pt,
+        modul: {
+          connect: {
+            id: modul,
+          },
+        },
       },
     });
     res.json(newPruefungstermin);
