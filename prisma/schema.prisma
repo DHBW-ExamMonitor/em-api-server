@@ -35,7 +35,7 @@ enum Studentenstatus {
 model Kurs {
   id               String            @id @default(uuid())
   name             String
-  studienjahr      DateTime
+  jahrgang         String
   studenten        Student[]
   pruefungstermine Pruefungstermin[]
 }

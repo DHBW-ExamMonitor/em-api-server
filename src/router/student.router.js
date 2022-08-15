@@ -62,7 +62,7 @@ studentRouter.post("/", async (req, res) => {
     });
     res.json(student);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.json({
       message: "Es ist ein Fehler beim Erstellen des Studenten aufgetreten.",
     });
@@ -81,7 +81,7 @@ studentRouter.put("/:id", async (req, res) => {
         id: id,
       },
       data: {
-        name: req.body.name,
+        ...req.body,
       },
     });
     res.json(student);
