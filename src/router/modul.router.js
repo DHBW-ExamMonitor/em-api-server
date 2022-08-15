@@ -80,6 +80,8 @@ modulRouter.put("/:id", async (req, res) => {
       where: { id: id },
       data: {
         name: req.body.name,
+        vorlesungen: req.body.vorlesungen,
+        aktiv: req.body.aktiv,
       },
     });
     res.json(modul);
