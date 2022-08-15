@@ -153,10 +153,20 @@ pruefungsterminRouter.put("/:id", async (req, res) => {
   const pruefungstermin = req.body;
 
   try {
+    const modul = pruefungstermin.modul;
+    const pt = pruefungstermin;
+    pt.dateTime = new Date(pt.dateTime);
+    delete pt.modul;
+
     const updatedPruefungstermin = await prisma.pruefungstermin.update({
       where: { id: req.params.id },
       data: {
         ...pruefungstermin,
+        modul: {
+          connect: {
+            id: modul,
+          },
+        },
       },
     });
     res.json(updatedPruefungstermin);
