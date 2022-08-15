@@ -57,10 +57,12 @@ modulRouter.post("/", async (req, res) => {
     const modul = await prisma.modul.create({
       data: {
         name: req.body.name,
+        vorlesungen: req.body.vorlesungen,
       },
     });
     res.json(modul);
   } catch (error) {
+    console.log(error);
     res.json({
       message: "Es ist ein Fehler beim Erstellen des Moduls aufgetreten.",
     });
