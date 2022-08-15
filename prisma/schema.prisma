@@ -64,8 +64,8 @@ model Pruefungstermin {
   hilfsmittel         String?
   modul               Modul                @relation(fields: [modulId], references: [id])
   modulId             String
-  raeume              String[]
-  aufsichtsPersonen   String[]
+  raeume              String
+  aufsichtsPersonen   String
   notizen             String
   dateTime            DateTime
   kurse               Kurs[]
