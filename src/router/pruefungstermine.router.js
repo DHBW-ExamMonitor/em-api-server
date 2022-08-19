@@ -15,7 +15,7 @@ pruefungsterminRouter.get("/", async (req, res) => {
     });
     res.json(pruefungstermin);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden der Pruefungstermine aufgetreten.",
     });
   }
@@ -31,7 +31,7 @@ pruefungsterminRouter.get("/:id", async (req, res) => {
     });
     res.json(pruefungstermin);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden der Pruefungstermin aufgetreten.",
     });
   }
@@ -47,7 +47,7 @@ pruefungsterminRouter.get("/modul/:modulId", async (req, res) => {
     });
     res.json(pruefungstermin);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden der Pruefungstermine aufgetreten.",
     });
   }
@@ -63,7 +63,7 @@ pruefungsterminRouter.get("/kurs/:kursId", async (req, res) => {
     });
     res.json(pruefungstermin);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden der Pruefungstermine aufgetreten.",
     });
   }
@@ -84,7 +84,7 @@ pruefungsterminRouter.get("/next/:days", async (req, res) => {
     });
     res.json(pruefungstermin);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden der Pruefungstermine aufgetreten.",
     });
   }
@@ -108,7 +108,7 @@ pruefungsterminRouter.get("/until/:datetime", async (req, res) => {
     res.json(pruefungstermin);
   } catch (error) {
     console.log(error);
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden der Pruefungstermine aufgetreten.",
     });
   }
@@ -139,7 +139,7 @@ pruefungsterminRouter.post("/", async (req, res) => {
     res.json(newPruefungstermin);
   } catch (error) {
     console.log(error);
-    res.json({
+    res.status(400).json({
       message:
         "Es ist ein Fehler beim Erstellen des Pruefungstermins aufgetreten.",
     });
@@ -162,7 +162,7 @@ pruefungsterminRouter.put("/:id", async (req, res) => {
     res.json(updatedPruefungstermin);
   } catch (error) {
     console.log(error);
-    res.json({
+    res.status(400).json({
       message:
         "Es ist ein Fehler beim Updaten des Pruefungstermins aufgetreten.",
     });
@@ -180,7 +180,7 @@ pruefungsterminRouter.delete("/:id", async (req, res) => {
     res.json(deletedPruefungstermin);
   } catch (error) {
     console.log(error);
-    res.json({
+    res.status(400).json({
       message:
         "Es ist ein Fehler beim Löschen des Pruefungstermins aufgetreten.",
     });

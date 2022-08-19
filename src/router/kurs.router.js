@@ -9,9 +9,9 @@ const kursRouter = express.Router();
 kursRouter.get("/", async (req, res) => {
   try {
     const kurse = await prisma.kurs.findMany();
-    res.json(kurse);
+    res.status(200).json(kurse);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden der Kurse aufgetreten.",
     });
   }
@@ -25,10 +25,10 @@ kursRouter.get("/:id", async (req, res) => {
     const kurs = await prisma.kurs.findUnique({
       where: { id: req.params.id },
     });
-    res.json(kurs);
+    res.status(200).json(kurs);
   } catch (error) {
     console.log(error);
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden des Kurses aufgetreten.",
     });
   }
@@ -45,9 +45,9 @@ kursRouter.post("/", async (req, res) => {
         jahrgang: req.body.jahrgang,
       },
     });
-    res.json(kurs);
+    res.status(201).json(kurs);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Erstellen des Kurses aufgetreten.",
     });
   }
@@ -66,11 +66,12 @@ kursRouter.put("/:id", async (req, res) => {
       },
       data: {
         name: req.body.name,
+        jahrgang: req.body.jahrgang,
       },
     });
-    res.json(kurs);
+    res.status(201).json(kurs);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Bearbeiten des Kurses aufgetreten.",
     });
   }
@@ -83,10 +84,14 @@ kursRouter.delete("/:id", async (req, res) => {
   const id = req.params.id;
 
   try {
+    // await prisma.pruefungstermin.deleteMany({ where: { kurs: { id: id } } });
+
     const kurs = await prisma.kurs.delete({ where: { id: id } });
-    res.json(kurs);
+
+    res.status(200).json(kurs);
   } catch (error) {
-    res.json({
+    console.error(error);
+    res.status(400).json({
       message: "Es ist ein Fehler beim Löschen des Kurses aufgetreten.",
     });
   }

@@ -11,7 +11,7 @@ modulRouter.get("/", async (req, res) => {
     const modul = await prisma.modul.findMany();
     res.json(modul);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden des Moduls aufgetreten.",
     });
   }
@@ -27,7 +27,7 @@ modulRouter.get("/:id", async (req, res) => {
     });
     res.json(modul);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden des Moduls aufgetreten.",
     });
   }
@@ -43,7 +43,7 @@ modulRouter.get("/kurs/:kursId", async (req, res) => {
     });
     res.json(modul);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden des Moduls aufgetreten.",
     });
   }
@@ -63,7 +63,7 @@ modulRouter.post("/", async (req, res) => {
     res.json(modul);
   } catch (error) {
     console.log(error);
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Erstellen des Moduls aufgetreten.",
     });
   }
@@ -86,7 +86,7 @@ modulRouter.put("/:id", async (req, res) => {
     });
     res.json(modul);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden des Moduls aufgetreten.",
     });
   }
@@ -104,7 +104,7 @@ modulRouter.delete("/:id", async (req, res) => {
     });
     res.json(modul);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden des Moduls aufgetreten.",
     });
   }
