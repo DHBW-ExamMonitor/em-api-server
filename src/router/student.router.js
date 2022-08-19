@@ -11,7 +11,7 @@ studentRouter.get("/", async (req, res) => {
     const studenten = await prisma.student.findMany();
     res.json(studenten);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden der Studenten aufgetreten.",
     });
   }
@@ -28,7 +28,7 @@ studentRouter.get("/:id", async (req, res) => {
     res.json(student);
   } catch (error) {
     console.log(error);
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden des Studenten aufgetreten.",
     });
   }
@@ -44,7 +44,7 @@ studentRouter.get("/kurs/:kursId", async (req, res) => {
     });
     res.json(student);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Laden des Studenten aufgetreten.",
     });
   }
@@ -63,7 +63,7 @@ studentRouter.post("/", async (req, res) => {
     res.json(student);
   } catch (error) {
     console.log(error);
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Erstellen des Studenten aufgetreten.",
     });
   }
@@ -86,7 +86,7 @@ studentRouter.put("/:id", async (req, res) => {
     });
     res.json(student);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Bearbeiten des Studenten aufgetreten.",
     });
   }
@@ -100,9 +100,9 @@ studentRouter.delete("/:id", async (req, res) => {
 
   try {
     const student = await prisma.student.delete({ where: { id: id } });
-    res.json(student);
+    res.status(200).json(student);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message: "Es ist ein Fehler beim Löschen des Studenten aufgetreten.",
     });
   }

@@ -11,7 +11,7 @@ pruefungsteilnahmeRouter.get("/", async (req, res) => {
     const pruefungsteilnahme = await prisma.pruefungsteilnahme.findMany();
     res.json(pruefungsteilnahme);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message:
         "Es ist ein Fehler beim Laden der Pruefungsteilnahmen aufgetreten.",
     });
@@ -28,7 +28,7 @@ pruefungsteilnahmeRouter.get("/:id", async (req, res) => {
     });
     res.json(pruefungsteilnahme);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message:
         "Es ist ein Fehler beim Laden der Pruefungsteilnahme aufgetreten.",
     });
@@ -45,7 +45,7 @@ pruefungsteilnahmeRouter.get("/pruefung/:pruefungId", async (req, res) => {
     });
     res.json(pruefungsteilnahme);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message:
         "Es ist ein Fehler beim Laden der Pruefungsteilnahme aufgetreten.",
     });
@@ -62,7 +62,7 @@ pruefungsteilnahmeRouter.get("/student/:studentId", async (req, res) => {
     });
     res.json(pruefungsteilnahme);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message:
         "Es ist ein Fehler beim Laden der Pruefungsteilnahme aufgetreten.",
     });
@@ -97,7 +97,7 @@ pruefungsteilnahmeRouter.get("/:id/studenten", async (req, res) => {
 
     res.json(students);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message:
         "Es ist ein Fehler beim Laden der Studenten der Prüfungsteilnahme aufgetreten.",
     });
@@ -116,7 +116,7 @@ pruefungsteilnahmeRouter.post("/", async (req, res) => {
     });
     res.json(pruefungsteilnahme);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message:
         "Es ist ein Fehler beim Erstellen der Pruefungsteilnahme aufgetreten.",
     });
@@ -136,7 +136,7 @@ pruefungsteilnahmeRouter.put("/:id", async (req, res) => {
     });
     res.json(pruefungsteilnahme);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message:
         "Es ist ein Fehler beim Updaten der Pruefungsteilnahme aufgetreten.",
     });
@@ -153,7 +153,7 @@ pruefungsteilnahmeRouter.delete("/:id", async (req, res) => {
     });
     res.json(pruefungsteilnahme);
   } catch (error) {
-    res.json({
+    res.status(400).json({
       message:
         "Es ist ein Fehler beim Löschen der Pruefungsteilnahme aufgetreten.",
     });

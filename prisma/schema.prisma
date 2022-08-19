@@ -45,7 +45,7 @@ model Student {
   name                String
   matrikelnummer      String               @unique
   studentenStatus     Studentenstatus
-  kurs                Kurs                 @relation(fields: [kursId], references: [id])
+  kurs                Kurs                 @relation(fields: [kursId], references: [id], onDelete: Cascade)
   kursId              String
   pruefungsteilnahmen Pruefungsteilnahme[]
 }
@@ -62,7 +62,7 @@ model Pruefungstermin {
   id                  String               @id @default(uuid())
   name                String
   hilfsmittel         String?
-  modul               Modul                @relation(fields: [modulId], references: [id])
+  modul               Modul                @relation(fields: [modulId], references: [id], onDelete: Cascade)
   modulId             String
   raeume              String
   aufsichtsPersonen   String
@@ -74,9 +74,9 @@ model Pruefungstermin {
 
 model Pruefungsteilnahme {
   id                       String                   @id @default(uuid())
-  student                  Student                  @relation(fields: [studentId], references: [id])
+  student                  Student                  @relation(fields: [studentId], references: [id], onDelete: Cascade)
   studentId                String
-  pruefungstermin          Pruefungstermin          @relation(fields: [pruefungsterminId], references: [id])
+  pruefungstermin          Pruefungstermin          @relation(fields: [pruefungsterminId], references: [id], onDelete: Cascade)
   pruefungsterminId        String
   pruefungsteilnahmeStatus PruefungsteilnahmeStatus
   versuch                  Versuch
