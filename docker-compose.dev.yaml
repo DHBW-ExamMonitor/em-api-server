@@ -13,6 +13,7 @@ services:
     build:
       context: ./
       target: dev
+      dockerfile: dockerfiles/Dockerfile
     depends_on: 
       postgres: 
         condition: service_healthy

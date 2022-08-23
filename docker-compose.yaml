@@ -4,23 +4,27 @@ services:
     build:
       context: ./
       target: production
+      dockerfile: dockerfiles/Dockerfile
     depends_on: 
       postgres: 
         condition: service_healthy
     ports:
       - "80:3000"
     environment:
-      NODE_ENV: production
       HOST: 0.0.0.0
       PORT: 3000
+      NODE_ENV: production
+      POSTGRES_URL: postgres://postgres:postgres@db:5432/server
 
   postgres:
     image: postgres:13
     container_name: db
     ports:
       - 5432:5432
-    env_file:
-      .env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: server
     volumes:
       - pg_data:/var/lib/postgresql/data
     healthcheck:
