@@ -5,7 +5,8 @@
     "start": "prisma migrate deploy && babel-node src/main.js",
     "migrate:deploy": "prisma migrate deploy",
     "fake": "node prisma/fake.js",
-    "dev": "prisma migrate deploy && nodemon — exec babel-node index.js"
+    "dev:docker": "prisma migrate deploy && nodemon — exec babel-node index.js",
+    "dev": "nodemon — exec babel-node index.js"
   },
   "dependencies": {
     "@babel/core": "^7.18.6",

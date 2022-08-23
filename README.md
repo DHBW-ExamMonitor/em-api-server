@@ -45,3 +45,15 @@ Start the server (dev):
 ```bash
 $ npm run dev
 ```
+
+Docker Dev:
+
+```bash
+$ docker compose -f docker-compose.dev.yaml up -d --build
+```
+
+Docker Prod:
+
+```bash
+$ docker compose up -d
+```

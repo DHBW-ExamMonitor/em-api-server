@@ -23,4 +23,4 @@ FROM base as dev
 
 RUN npx prisma generate
 ENV NODE_ENV=development
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "dev:docker"]
