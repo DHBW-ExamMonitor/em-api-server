@@ -11,7 +11,7 @@ services:
       
   web:
     build:
-      context: ./
+      context: ./dockerfiles
       target: dev
     depends_on: 
       postgres: 

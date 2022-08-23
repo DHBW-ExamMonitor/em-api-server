@@ -2,7 +2,7 @@ version: "3.8"
 services:      
   web:
     build:
-      context: ./
+      context: ./dockerfiles
       target: production
     depends_on: 
       postgres: 
