@@ -42,7 +42,7 @@ kursRouter.post("/", async (req, res) => {
     const kurs = await prisma.kurs.create({
       data: {
         name: req.body.name,
-        jahrgang: req.body.jahrgang,
+        studienende: new Date(req.body.studienende),
       },
     });
     res.status(201).json(kurs);
