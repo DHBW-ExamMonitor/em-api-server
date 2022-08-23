@@ -38,19 +38,22 @@ pruefungsteilnahmeRouter.get("/:id", async (req, res) => {
 /**
  * @api {get} /pruefungsteilnahme/pruefung/:pruefungId Get Pruefungsteilnahme by Pruefung ID
  */
-pruefungsteilnahmeRouter.get("/pruefung/:pruefungId", async (req, res) => {
-  try {
-    const pruefungsteilnahme = await prisma.pruefungsteilnahme.findMany({
-      where: { pruefungId: req.params.pruefungId },
-    });
-    res.json(pruefungsteilnahme);
-  } catch (error) {
-    res.status(400).json({
-      message:
-        "Es ist ein Fehler beim Laden der Pruefungsteilnahme aufgetreten.",
-    });
+pruefungsteilnahmeRouter.get(
+  "/pruefung/:pruefungsterminId",
+  async (req, res) => {
+    try {
+      const pruefungsteilnahme = await prisma.pruefungsteilnahme.findMany({
+        where: { pruefungsterminId: req.params.pruefungsterminId },
+      });
+      res.json(pruefungsteilnahme);
+    } catch (error) {
+      res.status(400).json({
+        message:
+          "Es ist ein Fehler beim Laden der Pruefungsteilnahme aufgetreten.",
+      });
+    }
   }
-});
+);
 
 /**
  * @api {get} /pruefungsteilnahme/student/:studentId Get Pruefungsteilnahme by Student ID
@@ -109,13 +112,25 @@ pruefungsteilnahmeRouter.get("/:id/studenten", async (req, res) => {
  */
 pruefungsteilnahmeRouter.post("/", async (req, res) => {
   try {
+    const { pruefungsterminId, studentId, versuch } = req.body;
     const pruefungsteilnahme = await prisma.pruefungsteilnahme.create({
       data: {
-        ...req.body,
+        versuch,
+        pruefungstermin: {
+          connect: {
+            id: pruefungsterminId,
+          },
+        },
+        student: {
+          connect: {
+            id: studentId,
+          },
+        },
       },
     });
     res.json(pruefungsteilnahme);
   } catch (error) {
+    console.log(error);
     res.status(400).json({
       message:
         "Es ist ein Fehler beim Erstellen der Pruefungsteilnahme aufgetreten.",
