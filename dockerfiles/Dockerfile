@@ -17,10 +17,10 @@ FROM base as production
 
 RUN npx prisma generate
 ENV NODE_ENV=production
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start:prod"]
 
 FROM base as dev
 
 RUN npx prisma generate
 ENV NODE_ENV=development
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start:prod"]

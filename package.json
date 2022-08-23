@@ -2,7 +2,8 @@
   "name": "api-server",
   "version": "1.0.0",
   "scripts": {
-    "start": "prisma migrate deploy && babel-node src/main.js",
+    "start": "babel-node src/main.js",
+    "start:prod": "prisma migrate deploy && babel-node src/main.js",
     "migrate:deploy": "prisma migrate deploy",
     "fake": "node prisma/fake.js",
     "dev": "nodemon — exec babel-node index.js"
