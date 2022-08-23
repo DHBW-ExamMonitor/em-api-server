@@ -1,3 +1,5 @@
+[![deploy](https://github.com/DHBW-ExamMonitor/em-api-server/actions/workflows/ci.yml/badge.svg)](https://github.com/DHBW-ExamMonitor/em-api-server/actions/workflows/ci.yml)
+
 # Server
 
 Note-Server with NodeJS, Express, Prisma und Postgres
