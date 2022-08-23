@@ -72,6 +72,6 @@ model Pruefungsteilnahme {
   studentId                String
   pruefungstermin          Pruefungstermin          @relation(fields: [pruefungsterminId], references: [id], onDelete: Cascade)
   pruefungsterminId        String
-  pruefungsteilnahmeStatus PruefungsteilnahmeStatus?
+  pruefungsteilnahmeStatus PruefungsteilnahmeStatus
   versuch                  Versuch
 }

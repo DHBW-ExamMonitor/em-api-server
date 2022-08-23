@@ -112,10 +112,12 @@ pruefungsteilnahmeRouter.get("/:id/studenten", async (req, res) => {
  */
 pruefungsteilnahmeRouter.post("/", async (req, res) => {
   try {
-    const { pruefungsterminId, studentId, versuch } = req.body;
+    const { pruefungsterminId, studentId, versuch, pruefungsteilnahmeStatus } =
+      req.body;
     const pruefungsteilnahme = await prisma.pruefungsteilnahme.create({
       data: {
         versuch,
+        pruefungsteilnahmeStatus,
         pruefungstermin: {
           connect: {
             id: pruefungsterminId,
