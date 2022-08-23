@@ -29,6 +29,10 @@ pruefungsterminRouter.get("/:id", async (req, res) => {
   try {
     const pruefungstermin = await prisma.pruefungstermin.findUnique({
       where: { id: req.params.id },
+      include: {
+        modul: true,
+        kurse: true,
+      },
     });
     res.json(pruefungstermin);
   } catch (error) {
