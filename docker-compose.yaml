@@ -1,13 +1,14 @@
 version: "3.8"
 services:      
   web:
+    depends_on: 
+      postgres: 
+        condition: service_healthy
+    restart: always 
     build:
       context: ./
       target: production
       dockerfile: dockerfiles/Dockerfile
-    depends_on: 
-      postgres: 
-        condition: service_healthy
     ports:
       - "80:3000"
     environment:
@@ -19,6 +20,7 @@ services:
   postgres:
     image: postgres:13
     container_name: db
+    restart: always 
     ports:
       - 5432:5432
     environment:
