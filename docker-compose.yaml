@@ -10,9 +10,9 @@ services:
     ports:
       - "80:3000"
     environment:
-      NODE_ENV: production
       HOST: 0.0.0.0
       PORT: 3000
+      NODE_ENV: production
       POSTGRES_URL: postgres://postgres:postgres@db:5432/server
 
   postgres:
