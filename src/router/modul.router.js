@@ -11,6 +11,7 @@ modulRouter.get("/", async (req, res) => {
     const modul = await prisma.modul.findMany();
     res.json(modul);
   } catch (error) {
+    console.error(error)
     res.status(400).json({
       message: "Es ist ein Fehler beim Laden des Moduls aufgetreten.",
     });
