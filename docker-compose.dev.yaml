@@ -1,18 +1,27 @@
 version: "3.8"
-services:      
+services:
+  prisma-studio:
+    container_name: prisma-studio
+    image: timothyjmiller/prisma-studio:latest
+    restart: unless-stopped
+    env_file: 
+      .env
+    ports:
+      - 5555:5555
+      
   web:
     build:
       context: ./
-      target: production
+      target: dev
     depends_on: 
       postgres: 
         condition: service_healthy
     ports:
-      - "80:3000"
+      - "3000:3000"
     environment:
-      NODE_ENV: production
-      HOST: 0.0.0.0
-      PORT: 3000
+      NODE_ENV: development
+    env_file:
+      .env
 
   postgres:
     image: postgres:13
