@@ -11,6 +11,7 @@ pruefungsterminRouter.get("/", async (req, res) => {
     const pruefungstermin = await prisma.pruefungstermin.findMany({
       include: {
         modul: true,
+        kurse: true,
       },
     });
     res.json(pruefungstermin);
@@ -122,9 +123,11 @@ pruefungsterminRouter.post("/", async (req, res) => {
 
   try {
     const modul = pruefungstermin.modul;
+    const kurse = pruefungstermin.kurse;
     const pt = pruefungstermin;
     pt.dateTime = new Date(pt.dateTime);
     delete pt.modul;
+    delete pt.kurse;
 
     const newPruefungstermin = await prisma.pruefungstermin.create({
       data: {
@@ -133,6 +136,9 @@ pruefungsterminRouter.post("/", async (req, res) => {
           connect: {
             id: modul,
           },
+        },
+        kurse: {
+          connect: kurse.map((kurs) => ({ id: kurs })),
         },
       },
     });
@@ -154,9 +160,11 @@ pruefungsterminRouter.put("/:id", async (req, res) => {
 
   try {
     const modul = pruefungstermin.modul;
+    const kurse = pruefungstermin.kurse;
     const pt = pruefungstermin;
     pt.dateTime = new Date(pt.dateTime);
     delete pt.modul;
+    delete pt.kurse;
 
     const updatedPruefungstermin = await prisma.pruefungstermin.update({
       where: { id: req.params.id },
@@ -166,6 +174,9 @@ pruefungsterminRouter.put("/:id", async (req, res) => {
           connect: {
             id: modul,
           },
+        },
+        kurse: {
+          set: kurse.map((kurs) => ({ id: kurs })),
         },
       },
     });
