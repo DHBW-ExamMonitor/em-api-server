@@ -3,6 +3,7 @@ import modulRouter from "./modul.router";
 import pruefungsteilnahmeRouter from "./pruefungsteilnahme.router";
 import pruefungstermineRouter from "./pruefungstermine.router";
 import studentenRouter from "./student.router";
+import statusRouter from "./status.router";
 
 export default {
   kursRouter,
@@ -10,4 +11,5 @@ export default {
   studentenRouter,
   pruefungsteilnahmeRouter,
   pruefungstermineRouter,
+  statusRouter
 };

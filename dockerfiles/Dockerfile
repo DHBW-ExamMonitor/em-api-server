@@ -8,23 +8,19 @@ COPY prisma ./prisma/
 
 RUN apk add chromium openssl
 RUN npm ci
-RUN npx prisma generate
 
 COPY . .
 
 EXPOSE 3000
 
 FROM base as production
+
+RUN npx prisma generate
 ENV NODE_ENV=production
-# RUN npm ci
-# COPY . /
 CMD ["npm", "run", "start"]
 
 FROM base as dev
+
+RUN npx prisma generate
 ENV NODE_ENV=development
-# RUN apt install openssl
-# RUN npm ci
-# RUN npx prisma generate
-# RUN npx prisma migrate dev
-# COPY . /
 CMD ["npm", "run", "dev"]

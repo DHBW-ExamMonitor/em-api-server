@@ -1,6 +1,7 @@
 import app from "./app";
 import router from "./router";
 
+app.use("/status", router.statusRouter);
 app.use("/kurse", router.kursRouter);
 app.use("/module", router.modulRouter);
 app.use("/studenten", router.studentenRouter);
