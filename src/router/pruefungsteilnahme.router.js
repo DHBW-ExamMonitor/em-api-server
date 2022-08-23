@@ -130,7 +130,6 @@ pruefungsteilnahmeRouter.post("/", async (req, res) => {
     });
     res.json(pruefungsteilnahme);
   } catch (error) {
-    console.log(error);
     res.status(400).json({
       message:
         "Es ist ein Fehler beim Erstellen der Pruefungsteilnahme aufgetreten.",
