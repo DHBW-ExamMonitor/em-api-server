@@ -74,4 +74,5 @@ model Pruefungsteilnahme {
   pruefungsterminId        String
   pruefungsteilnahmeStatus PruefungsteilnahmeStatus
   versuch                  Versuch
+  notizen                  String?
 }
