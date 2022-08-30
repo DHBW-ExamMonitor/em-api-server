@@ -49,8 +49,11 @@ pruefungsterminRouter.get("/modul/:modulId", async (req, res) => {
   try {
     const pruefungstermin = await prisma.pruefungstermin.findMany({
       where: { modulId: req.params.modulId },
+      include: {
+        kurse: true,
+      }
     });
-    res.json(pruefungstermin);
+    res.status(200).json(pruefungstermin);
   } catch (error) {
     res.status(400).json({
       message: "Es ist ein Fehler beim Laden der Pruefungstermine aufgetreten.",

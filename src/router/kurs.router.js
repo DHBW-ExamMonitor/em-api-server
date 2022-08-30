@@ -11,6 +11,7 @@ kursRouter.get("/", async (req, res) => {
     const kurse = await prisma.kurs.findMany();
     res.status(200).json(kurse);
   } catch (error) {
+    console.error(error);
     res.status(400).json({
       message: "Es ist ein Fehler beim Laden der Kurse aufgetreten.",
     });

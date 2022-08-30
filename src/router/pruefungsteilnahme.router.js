@@ -8,8 +8,12 @@ const pruefungsteilnahmeRouter = express.Router();
  */
 pruefungsteilnahmeRouter.get("/", async (req, res) => {
   try {
-    const pruefungsteilnahme = await prisma.pruefungsteilnahme.findMany();
-    res.json(pruefungsteilnahme);
+    const pruefungsteilnahme = await prisma.pruefungsteilnahme.findMany({
+      orderBy: {
+        dateTime: "desc",
+      }
+    });
+    res.status(200).json(pruefungsteilnahme);
   } catch (error) {
     res.status(400).json({
       message:
