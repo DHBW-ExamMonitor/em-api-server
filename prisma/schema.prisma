@@ -8,6 +8,7 @@ datasource db {
 }
 
 enum PruefungsteilnahmeStatus {
+  KEIN_STATUS
   BESTANDEN
   NICHT_BESTANDEN
   ANGERECHNET
@@ -74,4 +75,5 @@ model Pruefungsteilnahme {
   pruefungsterminId        String
   pruefungsteilnahmeStatus PruefungsteilnahmeStatus
   versuch                  Versuch
+  notizen                  String?
 }
