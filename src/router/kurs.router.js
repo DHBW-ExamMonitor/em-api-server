@@ -67,7 +67,7 @@ kursRouter.put("/:id", async (req, res) => {
       },
       data: {
         name: req.body.name,
-        jahrgang: req.body.jahrgang,
+        studienende: new Date(req.body.studienende),
       },
     });
     res.status(201).json(kurs);
