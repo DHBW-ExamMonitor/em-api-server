@@ -64,7 +64,7 @@ pruefungsterminRouter.get("/:id/teilnahmen", async (req, res) => {
         Student: teilnahme.student.name,
         Pruefungstermin: pruefungstermin.name,
         Versuch: teilnahme.versuch,
-        Status: teilnahme.status,
+        Status: teilnahme.pruefungsteilnahmeStatus,
         Notizen: teilnahme.notizen,
         Anwesend: "",
       });
