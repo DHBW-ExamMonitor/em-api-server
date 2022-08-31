@@ -9,7 +9,7 @@ const studentRouter = express.Router();
 studentRouter.get("/", async (req, res) => {
   try {
     const studenten = await prisma.student.findMany();
-    res.json(studenten);
+    res.json(studenten.sort((a, b) => a.matrikelnummer - b.matrikelnummer));
   } catch (error) {
     res.status(400).json({
       message: "Es ist ein Fehler beim Laden der Studenten aufgetreten.",
