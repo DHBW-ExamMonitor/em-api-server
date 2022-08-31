@@ -146,6 +146,19 @@ pruefungsteilnahmeRouter.post("/", async (req, res) => {
   }
 });
 
+// /**
+//  * 
+//  */
+//  pruefungsteilnahmeRouter.get("/:id/teilnehmerliste", async (req, res) => {
+//   const list = req.body;
+//   console.log(list);
+//   // const student = await prisma.student.findMany({
+//   //   where: { id: { in: list } },
+//   // });
+//   // console.log(student);
+//   // res.status(200).json(student);
+// });
+
 /**
  * @api {put} /pruefungsteilnahme/:id Update Pruefungsteilnahme
  */

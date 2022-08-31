@@ -43,6 +43,43 @@ pruefungsterminRouter.get("/:id", async (req, res) => {
 });
 
 /**
+ * @api {get} /pruefungstermin/:id Get all Teilnahmen by Pruefungstermin ID
+ */
+pruefungsterminRouter.get("/:id/teilnahmen", async (req, res) => {
+  try {
+    const pruefungstermin = await prisma.pruefungstermin.findUnique({
+      where: { id: req.params.id },
+    });
+    const teilnahmen = await prisma.pruefungsteilnahme.findMany({
+      where: { pruefungsterminId: pruefungstermin.id },
+      include: {
+        student: true,
+      },
+    });
+
+    const temp = [];
+
+    for (const teilnahme of teilnahmen) {
+      temp.push({
+        Student: teilnahme.student.name,
+        Pruefungstermin: pruefungstermin.name,
+        Versuch: teilnahme.versuch,
+        Status: teilnahme.status,
+        Notizen: teilnahme.notizen,
+        Anwesend: "",
+      });
+    }
+
+    res.status(200).json(temp);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({
+      message: "Es ist ein Fehler beim Laden der Pruefungstermin aufgetreten.",
+    });
+  }
+});
+
+/**
  * @api {get} /pruefungstermin/modul/:modulId Get Pruefungstermin by Modul ID
  */
 pruefungsterminRouter.get("/modul/:modulId", async (req, res) => {
@@ -51,7 +88,7 @@ pruefungsterminRouter.get("/modul/:modulId", async (req, res) => {
       where: { modulId: req.params.modulId },
       include: {
         kurse: true,
-      }
+      },
     });
     res.status(200).json(pruefungstermin);
   } catch (error) {
