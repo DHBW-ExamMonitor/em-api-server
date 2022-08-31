@@ -208,6 +208,44 @@ pruefungsterminRouter.put("/:id", async (req, res) => {
     const pt = pruefungstermin;
     pt.dateTime = new Date(pt.dateTime);
     delete pt.modul;
+
+    const currentPruefungstermin = await prisma.pruefungstermin.findUnique({
+      where: { id: req.params.id },
+      include: {
+        kurse: true,
+      },
+    });
+
+    const removedKurse = [];
+
+    for (const kurs of currentPruefungstermin.kurse) {
+      if (!pt.kurse.includes(kurs.id)) {
+        removedKurse.push(kurs.id);
+      }
+    }
+
+    for (const kurs of removedKurse) {
+      const deleteKurs = await prisma.kurs.findUnique({
+        where: { id: kurs },
+        include: {
+          studenten: true,
+        },
+      });
+
+      const studentenIds = deleteKurs.studenten.map((item) => {
+        return item.id;
+      });
+
+      await prisma.pruefungsteilnahme.deleteMany({
+        where: {
+          studentId: {
+            in: studentenIds,
+          },
+          pruefungsterminId: req.params.id,
+        },
+      });
+    }
+
     delete pt.kurse;
 
     const updatedPruefungstermin = await prisma.pruefungstermin.update({
@@ -224,7 +262,8 @@ pruefungsterminRouter.put("/:id", async (req, res) => {
         },
       },
     });
-    res.json(updatedPruefungstermin);
+
+    res.status(200).json(updatedPruefungstermin);
   } catch (error) {
     console.log(error);
     res.status(400).json({
