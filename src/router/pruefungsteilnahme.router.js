@@ -119,7 +119,7 @@ pruefungsteilnahmeRouter.post("/", async (req, res) => {
   try {
     const { pruefungsterminId, studentId, versuch, pruefungsteilnahmeStatus } =
       req.body;
-    const exists = await prisma.pruefungsteilnahme.findMany({
+    const exists = await prisma.pruefungsteilnahme.findFirst({
       where: {
         pruefungsterminId: pruefungsterminId,
         studentId: studentId,
