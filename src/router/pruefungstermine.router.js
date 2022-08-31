@@ -186,7 +186,7 @@ pruefungsterminRouter.post("/", async (req, res) => {
         },
       },
     });
-    res.json(newPruefungstermin);
+    res.status(201).json(newPruefungstermin);
   } catch (error) {
     console.log(error);
     res.status(400).json({
