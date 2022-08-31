@@ -119,7 +119,6 @@ pruefungsteilnahmeRouter.post("/", async (req, res) => {
   try {
     const { pruefungsterminId, studentId, versuch, pruefungsteilnahmeStatus } =
       req.body;
-    await prisma.pruefungsteilnahme.deleteMany();
     const exists = await prisma.pruefungsteilnahme.findMany({
       where: {
         pruefungsterminId: pruefungsterminId,
