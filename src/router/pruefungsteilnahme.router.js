@@ -11,7 +11,7 @@ pruefungsteilnahmeRouter.get("/", async (req, res) => {
     const pruefungsteilnahme = await prisma.pruefungsteilnahme.findMany({
       orderBy: {
         dateTime: "desc",
-      }
+      },
     });
     res.status(200).json(pruefungsteilnahme);
   } catch (error) {
@@ -102,8 +102,9 @@ pruefungsteilnahmeRouter.get("/:id/studenten", async (req, res) => {
       students.push(student);
     });
 
-    res.json(students);
+    res.status(200).json(students);
   } catch (error) {
+    console.error(error);
     res.status(400).json({
       message:
         "Es ist ein Fehler beim Laden der Studenten der Prüfungsteilnahme aufgetreten.",
@@ -134,8 +135,10 @@ pruefungsteilnahmeRouter.post("/", async (req, res) => {
         },
       },
     });
-    res.json(pruefungsteilnahme);
+    console.log("CREATED", pruefungsteilnahme);
+    res.status(201).json(pruefungsteilnahme);
   } catch (error) {
+    console.error(error);
     res.status(400).json({
       message:
         "Es ist ein Fehler beim Erstellen der Pruefungsteilnahme aufgetreten.",

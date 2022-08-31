@@ -51,6 +51,19 @@ studentRouter.get("/kurs/:kursId", async (req, res) => {
 });
 
 /**
+ *
+ */
+studentRouter.post("/all", async (req, res) => {
+  const list = req.body;
+  console.log(list);
+  const student = await prisma.student.findMany({
+    where: { id: { in: list } },
+  });
+  console.log(student);
+  res.status(200).json(student);
+});
+
+/**
  * @api {post} /student/:id Create Student
  */
 studentRouter.post("/", async (req, res) => {
