@@ -119,24 +119,35 @@ pruefungsteilnahmeRouter.post("/", async (req, res) => {
   try {
     const { pruefungsterminId, studentId, versuch, pruefungsteilnahmeStatus } =
       req.body;
-    const pruefungsteilnahme = await prisma.pruefungsteilnahme.create({
-      data: {
-        versuch,
-        pruefungsteilnahmeStatus,
-        pruefungstermin: {
-          connect: {
-            id: pruefungsterminId,
-          },
-        },
-        student: {
-          connect: {
-            id: studentId,
-          },
-        },
+    const exists = await prisma.pruefungsteilnahme.findMany({
+      where: {
+        pruefungsterminId: pruefungsterminId,
+        studentId: studentId,
       },
     });
-    console.log("CREATED", pruefungsteilnahme);
-    res.status(201).json(pruefungsteilnahme);
+    if (!exists) {
+      const pruefungsteilnahme = await prisma.pruefungsteilnahme.create({
+        data: {
+          versuch,
+          pruefungsteilnahmeStatus,
+          pruefungstermin: {
+            connect: {
+              id: pruefungsterminId,
+            },
+          },
+          student: {
+            connect: {
+              id: studentId,
+            },
+          },
+        },
+      });
+      res.status(201).json(pruefungsteilnahme);
+    } else {
+      res.status(201).json({
+        message: "Prüfungsteilnahme existiert bereits.",
+      });
+    }
   } catch (error) {
     console.error(error);
     res.status(400).json({
@@ -147,7 +158,7 @@ pruefungsteilnahmeRouter.post("/", async (req, res) => {
 });
 
 // /**
-//  * 
+//  *
 //  */
 //  pruefungsteilnahmeRouter.get("/:id/teilnehmerliste", async (req, res) => {
 //   const list = req.body;
