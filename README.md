@@ -129,5 +129,6 @@ Die ERM-Datei wird als PDF im Hauptverzeichnis gespeichert.
 ├── .dockerignore           # Auflistung der für Docker Container irrelevanten Dateien
 ├── .env.example            # Beispielhafte Umgebungsvariablen für den Betrieb von Dev und Prod
 ├── docker-compose.dev.yaml # Beschreibung der Services für die Entwicklungsumgebung
+├── docker-compose.yaml     # Beschreibung der Services für die Produktivumgebung
 └── src                     # Quellcode
 ```
