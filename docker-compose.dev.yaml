@@ -8,21 +8,6 @@ services:
       .env
     ports:
       - 5555:5555
-      
-  web:
-    build:
-      context: ./
-      target: dev
-      dockerfile: dockerfiles/Dockerfile
-    depends_on: 
-      postgres: 
-        condition: service_healthy
-    ports:
-      - "3000:3000"
-    # environment:
-    #   NODE_ENV: development
-    env_file:
-      .env
 
   postgres:
     image: postgres:13
