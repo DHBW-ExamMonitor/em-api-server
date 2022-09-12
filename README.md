@@ -10,10 +10,10 @@
   - Datenbank-Migrationen bei Änderungen des Schemas
 - Prisma Studio (dev) (https://www.prisma.io/studio)
   - Entwickler-Einsicht in die Datenbank unter http://localhost:5555
-- Postgres-Datenbank (SQL)(https://www.postgresql.org)
-- Docker (Docker Compose v2)(https://docs.docker.com/compose/)
+- Postgres-Datenbank (SQL) (https://www.postgresql.org)
+- Docker (Docker Compose v2) (https://docs.docker.com/compose/)
   - Containerisierung der Anwendungen für den einfachen Produktivbetrieb
-- Prisma-ERD-Generator (Generierung eines ERM (Entity-Relationship-Model))(https://github.com/keonik/prisma-erd-generator)
+- Prisma-ERD-Generator (Generierung eines ERM (Entity-Relationship-Model)) (https://github.com/keonik/prisma-erd-generator)
 - NodeJS > v14 (https://nodejs.org/en/)
 
 ## Einrichtung
