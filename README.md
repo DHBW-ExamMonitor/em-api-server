@@ -120,7 +120,7 @@ Anschließend Dev-Migration durchführen:
 $ npx prisma migrate dev
 ```
 
-Die ERM-Datei wird als PDF im Hauptverzeichnis gespeichert.
+Die ERM-Datei wird als PDF im **prisma**-Verzeichnis gespeichert.
 
 ## Verzeichnis
 
