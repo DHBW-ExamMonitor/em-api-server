@@ -17,6 +17,10 @@
 
 ## Einrichtung
 
+Zur vereinfachten Bereitstellung statischer Services, wie beispielsweise die Postgres-Datenbank, wird Docker mit Docker Compose eingesetzt. Dabei enthält Docker Compose die Beschreibung aller im Rahmen des Backend erforderlichen Services und fasst diese in einer Datei zusammen.
+
+Im Ordner **dockerfiles/** wird der Container des Servers im Entwicklungs- sowie Produktivmodus beschrieben und entsprechend in den Docker-Compose-Dateien integriert. Dabei wird der Prisma-Client, der für das ORM notwendig ist, direkt generiert.
+
 ### Entwicklungsumgebung
 
 Umgebungsvariablen kopieren & setzen:
