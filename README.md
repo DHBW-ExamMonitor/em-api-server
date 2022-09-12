@@ -6,8 +6,8 @@
   - Web-Framework
   - Bereitstellung der REST-Schnittstellen
 - Prisma (Schema & Migrationen) (https://www.prisma.io)
-  - ORM (Object-Relational-Mapping)
-  - Automatisierung der Migrationen
+  - ORM (Object-Relational-Mapping) für NodeJS
+  - Datenbank-Migrationen bei Änderungen des Schemas
 - Prisma Studio (dev) (https://www.prisma.io/studio)
   - Entwickler-Einsicht in die Datenbank unter http://localhost:5555
 - Postgres-Datenbank (SQL)
@@ -56,6 +56,8 @@ $ npm run dev
 ```
 
 ### Produktivumgebung
+
+⚠️ Die produktiven Services legen ein Docker Volume mit dem Namen pg_data an. Dieses Docker Volume stellt den Speicherbereich für die Postgres-Datenbank dar und darf nach der ersten Erstellung nicht mehr gelöscht werden, da sonst auch alle Daten gelöscht werden.
 
 Umgebungsvariablen kopieren & setzen:
 
