@@ -87,7 +87,7 @@ $ npx prisma migrate deploy
 Sollte die DHBW Ressourcen für das Sichern von Postgres-Datenbanken besitzen, kann diese auch in eine entsprechende Backup-Software integriert werden.
 
 **Hinweise zur Verfügbarkeit:**</br>
-Im Fall eines Ausfalls (z.B. aufgrund eines Stromausfalls) fährt Docker compose alle erforderlichen Services wieder hoch. Sollte es dennoch zu Problemen kommen, können die Logs der Services über folgenden Befehl aufgerufen werden:
+Im Fall eines Ausfalls (z.B. aufgrund eines Stromausfalls) fährt Docker Compose alle erforderlichen Services wieder hoch. Sollte es dennoch zu Problemen kommen, können die Logs der Services über folgenden Befehl aufgerufen werden:
 
 ```bash
 $ docker-compose logs
