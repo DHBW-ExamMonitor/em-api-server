@@ -1,5 +1,7 @@
 # DHBW-ExamMonitor Backend
 
+Projekt: https://github.com/DHBW-ExamMonitor/em-api-server
+
 ## Abhängigkeiten & Technologien
 
 - Express.js (https://expressjs.com)
@@ -10,10 +12,11 @@
   - Datenbank-Migrationen bei Änderungen des Schemas
 - Prisma Studio (dev) (https://www.prisma.io/studio)
   - Entwickler-Einsicht in die Datenbank unter http://localhost:5555
-- Postgres-Datenbank (SQL)
-- Docker (Docker Compose v2)
+- Postgres-Datenbank (SQL) (https://www.postgresql.org)
+- Docker (Docker Compose v2) (https://docs.docker.com/compose/)
   - Containerisierung der Anwendungen für den einfachen Produktivbetrieb
-- NodeJS > v14
+- Prisma-ERD-Generator (Generierung eines ERM (Entity-Relationship-Model)) (https://github.com/keonik/prisma-erd-generator)
+- NodeJS > v14 (https://nodejs.org/en/)
 
 ## Einrichtung
 
@@ -94,3 +97,40 @@ $ docker-compose logs
 ```
 
 Diese liefern hilfreiche Informationen in Bezug auf mögliche Gründe der Nicht-Verfügbarkeit einzelner Services.
+
+## Generierung eines ERM (Entity-Relationship-Model)
+
+primsa/**prisma.schema**-Datei anpassen:
+
+```js
+generator erd {
+  provider = "prisma-erd-generator"
+  output = "./ERD.pdf"
+}
+```
+
+⚠️ **Achtung**:</br>
+Es darf nur ein Generator in der Datei enthalten sein. Eventuell muss der andere Generator auskommentiert werden, um das ERM zu erstellen.
+
+Anschließend Dev-Migration durchführen:
+
+```bash
+$ npx prisma migrate dev
+```
+
+Die ERM-Datei wird als PDF im Hauptverzeichnis gespeichert.
+
+## Verzeichnis
+
+```
+.
+├── dockerfiles             # Verzeichnis für Docker Datei für Web-Service
+├── prisma                  # Verzeichnis für Prisma-Konfiguration
+    ├── schema.prisma       # Datenbank Schema
+    └── migrations          # Verzeichnis der getätigten Datenbankmigrationen
+├── .dockerignore           # Auflistung der für Docker Container irrelevanten Dateien
+├── .env.example            # Beispielhafte Umgebungsvariablen für den Betrieb von Dev und Prod
+├── docker-compose.dev.yaml # Beschreibung der Services für die Entwicklungsumgebung
+├── docker-compose.yaml     # Beschreibung der Services für die Produktivumgebung
+└── src                     # Quellcode
+```
