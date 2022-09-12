@@ -16,7 +16,7 @@ Projekt: https://github.com/DHBW-ExamMonitor/em-api-server
 - Docker (Docker Compose v2) (https://docs.docker.com/compose/)
   - Containerisierung der Anwendungen für den einfachen Produktivbetrieb
 - Prisma-ERD-Generator (Generierung eines ERM (Entity-Relationship-Model)) (https://github.com/keonik/prisma-erd-generator)
-- NodeJS > v14 (https://nodejs.org/en/)
+- NodeJS > v14 (https://nodejs.dev)
 
 ## Einrichtung
 
@@ -56,6 +56,8 @@ Datenbank-Migrationen übernehmen:
 $ npx prisma db push
 ```
 
+</br>
+</br>
 Entwicklungsserver starten:
 
 ```bash
@@ -65,7 +67,7 @@ $ npm run dev
 ### Produktivumgebung
 
 ⚠️ **Achtung**:</br>
-Die produktiven Services legen ein Docker Volume unter dem Pfad **pg_data** an. 
+Die produktiven Services legen ein Docker Volume unter dem Pfad **pg_data** an.
 Dieses Docker Volume stellt den Speicherbereich für die Postgres-Datenbank dar und darf nach der ersten Erstellung nicht mehr gelöscht werden, da sonst auch alle Daten gelöscht werden.
 
 Umgebungsvariablen kopieren & setzen:
