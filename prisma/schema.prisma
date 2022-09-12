@@ -2,6 +2,12 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// Zum Generieren eines Entity Relationship Model (ERM) aus der Datenbank
+// generator erd {
+//    provider = "prisma-erd-generator"
+//      output = "./ERD.pdf"
+//  }
+
 datasource db {
   url      = env("DATABASE_URL")
   provider = "postgresql"
