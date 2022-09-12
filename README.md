@@ -1,5 +1,7 @@
 # DHBW-ExamMonitor Backend
 
+Projekt: https://github.com/DHBW-ExamMonitor/em-api-server
+
 ## Abhängigkeiten & Technologien
 
 - Express.js (https://expressjs.com)
