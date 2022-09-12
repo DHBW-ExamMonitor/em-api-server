@@ -124,8 +124,8 @@ Die ERM-Datei wird als PDF im Hauptverzeichnis gespeichert.
 .
 ├── dockerfiles             # Verzeichnis für Docker Datei für Web-Service
 ├── prisma                  # Verzeichnis für Prisma-Konfiguration
-    ├── schema.prisma       # Datenbank Schema
-    └── migrations          # Verzeichnis der getätigten Datenbankmigrationen
+|   ├── schema.prisma       # Datenbank Schema
+|   └── migrations          # Verzeichnis der getätigten Datenbankmigrationen
 ├── .dockerignore           # Auflistung der für Docker Container irrelevanten Dateien
 ├── .env.example            # Beispielhafte Umgebungsvariablen für den Betrieb von Dev und Prod
 ├── docker-compose.dev.yaml # Beschreibung der Services für die Entwicklungsumgebung
