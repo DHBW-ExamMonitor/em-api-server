@@ -57,7 +57,9 @@ $ npm run dev
 
 ### Produktivumgebung
 
-⚠️ Die produktiven Services legen ein Docker Volume mit dem Namen pg_data an. Dieses Docker Volume stellt den Speicherbereich für die Postgres-Datenbank dar und darf nach der ersten Erstellung nicht mehr gelöscht werden, da sonst auch alle Daten gelöscht werden.
+⚠️ **Achtung**:</br>
+Die produktiven Services legen ein Docker Volume unter dem Pfad **pg_data** an. 
+Dieses Docker Volume stellt den Speicherbereich für die Postgres-Datenbank dar und darf nach der ersten Erstellung nicht mehr gelöscht werden, da sonst auch alle Daten gelöscht werden.
 
 Umgebungsvariablen kopieren & setzen:
 
@@ -76,3 +78,15 @@ Datenbank-Migrationen übernehmen:
 ```bash
 $ npx prisma migrate deploy
 ```
+
+Hinweise zum Backup:</br>
+Sollte die DHBW Ressourcen für das Sichern von Postgres-Datenbanken besitzen, kann diese auch in eine entsprechende Backup-Software integriert werden.
+
+Hinweise zur Verfügbarkeit:</br>
+Im Fall eines Ausfalls (z.B. aufgrund eines Stromausfalls) fährt Docker compose alle erforderlichen Services wieder hoch. Sollte es dennoch zu Problemen kommen, können die Logs der Services über folgenden Befehl aufgerufen werden:
+
+```bash
+$ docker-compose logs
+```
+
+Diese liefern hilfreiche Informationen in Bezug auf mögliche Gründe der Nicht-Verfügbarkeit einzelner Services.
