@@ -1,61 +1,76 @@
-[![deploy](https://github.com/DHBW-ExamMonitor/em-api-server/actions/workflows/ci.yml/badge.svg)](https://github.com/DHBW-ExamMonitor/em-api-server/actions/workflows/ci.yml)
+# DHBW-ExamMonitor Backend
 
-# Server
+## Abhängigkeiten & Technologien
 
-Note-Server with NodeJS, Express, Prisma und Postgres
+- Express.js (https://expressjs.com)
+  - Web-Framework
+  - Bereitstellung der REST-Schnittstellen
+- Prisma (Schema & Migrationen) (https://www.prisma.io)
+  - ORM (Object-Relational-Mapping)
+  - Automatisierung der Migrationen
+- Prisma Studio (dev) (https://www.prisma.io/studio)
+  - Entwickler-Einsicht in die Datenbank unter http://localhost:5555
+- Postgres-Datenbank (SQL)
+- Docker (Docker Compose v2)
+  - Containerisierung der Anwendungen für den einfachen Produktivbetrieb
+- NodeJS > v14
 
-## Setup
+## Einrichtung
 
-Generate prisma client:
+### Entwicklungsumgebung
 
-```bash
-$ npx prisma generate
-```
-
-Install dependencies:
-
-```bash
-$ npm install
-```
-
-Set environment variables:
+Umgebungsvariablen kopieren & setzen:
 
 ```bash
 $ cp .env.example .env
 ```
 
-Start services (Postgres):
+Node Modules installieren:
 
 ```bash
-$ docker-compose up -d
+$ npm install
 ```
 
-Apply database migrations (dev):
+Prisma-Client generieren:
+
+```bash
+$ npx prisma generate
+```
+
+Docker-Dienste starten (dev: Datenbank & Prisma Studio):
+
+```bash
+$ docker-compose -f docker-compose.dev.yaml up -d --build
+```
+
+Datenbank-Migrationen übernehmen:
 
 ```bash
 $ npx prisma db push
 ```
 
-To generate fake Kurse and Studenten run:
-
-```bash
-$ npm run fake
-```
-
-Start the server (dev):
+Entwicklungsserver starten:
 
 ```bash
 $ npm run dev
 ```
 
-Docker Dev:
+### Produktivumgebung
+
+Umgebungsvariablen kopieren & setzen:
 
 ```bash
-$ docker compose -f docker-compose.dev.yaml up -d --build
+$ cp .env.example .env
 ```
 
-Docker Prod:
+Docker-Dienste starten (prod):
 
 ```bash
-$ docker compose up -d
+$ docker-compose up -d
+```
+
+Datenbank-Migrationen übernehmen:
+
+```bash
+$ npx prisma migrate deploy
 ```
