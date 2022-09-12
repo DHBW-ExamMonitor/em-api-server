@@ -13,6 +13,7 @@
 - Postgres-Datenbank (SQL)
 - Docker (Docker Compose v2)
   - Containerisierung der Anwendungen für den einfachen Produktivbetrieb
+- Prisma-ERD-Generator (Generierung eines ERM (Entity-Relationship-Model))
 - NodeJS > v14
 
 ## Einrichtung
@@ -94,3 +95,25 @@ $ docker-compose logs
 ```
 
 Diese liefern hilfreiche Informationen in Bezug auf mögliche Gründe der Nicht-Verfügbarkeit einzelner Services.
+
+## Generierung eines ERM (Entity-Relationship-Model)
+
+primsa/**prisma.schema**-Datei anpassen:
+
+```js
+generator erd {
+  provider = "prisma-erd-generator"
+  output = "./ERD.pdf"
+}
+```
+
+⚠️ **Achtung**:</br>
+Es darf nur ein Generator in der Datei enthalten sein. Eventuell muss der andere Generator auskommentiert werden, um das ERM zu erstellen.
+
+Anschließend Dev-Migration durchführen:
+
+```bash
+$ npx prisma migrate dev
+```
+
+Die ERM-Datei wird als PDF im Hauptverzeichnis gespeichert.
